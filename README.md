@@ -45,4 +45,11 @@ To remove an image's background:
 python main.py logo.png -r 
 ```
 
-This will remove the background of `logo.png` using the remove.bg API.
+This will remove the background of `logo.png` using the remove.bg API. Here’s an example of how it works:
+
+<img src='tests/logo.jpeg' alt='Before background removal' width=200> 
+<img src='tests/logo.png' alt='After background removal' width=200>
+
+In the above images, the first image is the original image and the second image is the result after running the --remove-bg command. As you can see, the background has been successfully removed.
+
+Please note that the effectiveness of background removal can vary depending on the complexity of the image. For best results, use images with clear contrast between the subject and the background.
