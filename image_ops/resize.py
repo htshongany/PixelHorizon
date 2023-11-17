@@ -1,5 +1,5 @@
 from PIL import Image
-from utils import img_output_name
+from .utils import img_output_name
 
 def resize_image(image_path, width=100, height=100, image_output_name = None):
 

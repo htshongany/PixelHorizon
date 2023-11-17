@@ -1,5 +1,5 @@
 import requests
-from utils import img_output_name
+from .utils import img_output_name
 
 
 def remove_background(image_path,api_key, image_output_name=None):

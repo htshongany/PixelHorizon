@@ -1,5 +1,5 @@
 from PIL import Image
-from utils import img_output_name
+from .utils import img_output_name
 
 # def to_jpg(img):
 #     return img.convert('RGB')
