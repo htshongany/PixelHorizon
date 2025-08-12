@@ -1,41 +1,29 @@
-import sys , os
-sys.path.append('..')
+import sys
+import os
 import unittest
-import time 
-from hashlib import blake2b
-from image_ops.utils import hash_string , hash_output_name , img_output_name
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from image_ops.utils import get_image_name, get_extension
 
-def img_output_name(image_path, format,output_name=None):
-    
-    if output_name == None:
-        return hash_output_name(image_path,format)
-    else:
-        if output_name.split('.')[-1] != format:
-            return output_name +'.'+format
+class TestUtils(unittest.TestCase):
+    def setUp(self):
+        """Set up test environment."""
+        self.test_path_unix = "/home/user/images/logo.png"
+        self.test_path_windows = "C:\\Users\\user\\images\\logo.png"
+        self.test_path_simple = "logo.jpeg"
 
-        return output_name
+    def test_get_image_name(self):
+        """Test extracting the base name of an image file."""
+        self.assertEqual(get_image_name(self.test_path_unix), "logo")
+        self.assertEqual(get_image_name(self.test_path_windows), "logo")
+        self.assertEqual(get_image_name(self.test_path_simple), "logo")
 
-class TestU(unittest.TestCase):
-
-    def test_hash_string(self):
-        self.assertEqual(blake2b(key=bytes('test', encoding='utf-8'), digest_size=5).hexdigest(), blake2b(key=b'test', digest_size=5).hexdigest())
-
-    def test_hash_output_name(self):
-        hash_str = hash_string(str(int(time.time()))) +'.png'
-        self.assertEqual(hash_str.split('.')[-1], 'png')
-
-    def test_img_output_name(self):
-
-        output_name_1 = img_output_name('logo.jpeg', 'jpeg',output_name=None)
-        output_name_2 = img_output_name('logo.jpeg', 'png', output_name='main')
-        output_name_3 = img_output_name('logo.jpeg', 'jpeg',output_name="main.jpeg")
-    
-        self.assertEqual(output_name_1, hash_string(str(int(time.time()))) +'.jpeg')
-        self.assertEqual(output_name_2, 'main.png')
-        self.assertEqual(output_name_3, 'main.jpeg')
-
+    def test_get_extension(self):
+        """Test extracting the file extension."""
+        self.assertEqual(get_extension(self.test_path_unix), "png")
+        self.assertEqual(get_extension(self.test_path_windows), "png")
+        self.assertEqual(get_extension(self.test_path_simple), "jpeg")
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)

@@ -1,18 +1,31 @@
-from hashlib import blake2b
-import time 
+import os
 
-def hash_string(string, digest_size=2):
-	return blake2b(key=bytes(string, encoding='utf-8'), digest_size=digest_size).hexdigest()
+def get_image_name(image_path: str) -> str:
+    """
+    Extracts the base name of a file from its path, without the extension.
 
-def hash_output_name(image_path, format):
-	return hash_string(str(int(time.time()))) +'.'+ format
+    Example:
+        get_image_name("C:/Users/Test/logo.png") -> "logo"
 
-def img_output_name(image_path, format,output_name=None):
-	
-	if output_name == None:
-		return hash_output_name(image_path,format)
-	else:
-		if output_name.split('.')[-1] != format:
-			return output_name +'.'+format
+    Args:
+        image_path (str): The full or relative path to the image.
 
-		return output_name
+    Returns:
+        str: The base name of the file.
+    """
+    return os.path.splitext(os.path.basename(image_path))[0]
+
+def get_extension(image_path: str) -> str:
+    """
+    Extracts the extension of a file from its path, without the dot.
+
+    Example:
+        get_extension("C:/Users/Test/logo.png") -> "png"
+
+    Args:
+        image_path (str): The full or relative path to the image.
+
+    Returns:
+        str: The file extension.
+    """
+    return os.path.splitext(image_path)[1][1:].lower()

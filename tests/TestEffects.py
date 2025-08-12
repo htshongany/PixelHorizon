@@ -3,13 +3,12 @@ import os
 import unittest
 from PIL import Image
 
-# Adjust the path to import from the parent directory
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from image_ops.resize import resize_image
+from image_ops.effects import apply_grayscale
 from image_ops.utils import get_image_name
 
-class TestImageResize(unittest.TestCase):
+class TestImageEffects(unittest.TestCase):
     def setUp(self):
         """Set up test environment."""
         self.input_image_path = os.path.join(os.path.dirname(__file__), 'logo.png')
@@ -23,19 +22,18 @@ class TestImageResize(unittest.TestCase):
             if os.path.exists(file_path):
                 os.remove(file_path)
 
-    def test_resize_image(self):
-        """Test resizing an image to a specific dimension."""
-        width, height = 100, 150
-        output_path = os.path.join(self.output_dir, f"{self.test_image_name}_resized.png")
+    def test_apply_grayscale(self):
+        """Test applying a grayscale filter to an image."""
+        output_path = os.path.join(self.output_dir, f"{self.test_image_name}_grayscale.png")
         self.output_files.append(output_path)
 
-        result_path = resize_image(self.input_image_path, width, height, custom_output_path=output_path)
-
+        result_path = apply_grayscale(self.input_image_path, custom_output_path=output_path)
+        
         self.assertTrue(os.path.exists(result_path))
         with Image.open(result_path) as img:
-            self.assertEqual(img.size, (width, height))
+            # 'L' mode is for grayscale
+            self.assertEqual(img.mode, 'L')
         self.assertEqual(result_path, output_path)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-
