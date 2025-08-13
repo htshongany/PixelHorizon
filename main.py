@@ -55,18 +55,21 @@ def main():
     # --- File Discovery ---
     files_to_process = list(args.image_paths)
     if args.input_dir:
-        if not os.path.isdir(args.input_dir):
-            console.print(f"[red]Error: Input directory '{args.input_dir}' not found.[/red]")
-            return
-        if args.pattern:
-            search_path = os.path.join(args.input_dir, args.pattern)
-            files_to_process.extend(glob.glob(search_path))
-        else:
-            # Default patterns if none provided
-            default_patterns = ['*.png', '*.jpg', '*.jpeg', '*.ico']
-            for pattern in default_patterns:
-                search_path = os.path.join(args.input_dir, pattern)
+        if os.path.isfile(args.input_dir):
+            files_to_process.append(args.input_dir)
+        elif os.path.isdir(args.input_dir):
+            if args.pattern:
+                search_path = os.path.join(args.input_dir, args.pattern)
                 files_to_process.extend(glob.glob(search_path))
+            else:
+                # Default patterns if none provided
+                default_patterns = ['*.png', '*.jpg', '*.jpeg', '*.ico']
+                for pattern in default_patterns:
+                    search_path = os.path.join(args.input_dir, pattern)
+                    files_to_process.extend(glob.glob(search_path))
+        else:
+            console.print(f"[red]Error: Input path '{args.input_dir}' not found.[/red]")
+            return
 
     if not files_to_process:
         console.print("[yellow]No image files found to process.[/yellow]")

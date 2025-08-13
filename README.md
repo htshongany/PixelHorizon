@@ -85,7 +85,26 @@ The result is a clean PNG with a transparent background.
   </tr>
 </table>
 
-#### Use Case 3: Chaining Multiple Operations
+#### Use Case 3: Vectorizing an Image
+
+Convert a raster image (like PNG) into a clean, scalable SVG vector graphic.
+
+```bash
+python main.py assets/simple-logo.png --to-svg
+```
+
+<table align="center" style="margin: 20px auto;">
+  <tr>
+    <td align="center"><strong>Before (PNG)</strong></td>
+    <td align="center"><strong>After (SVG)</strong></td>
+  </tr>
+  <tr>
+    <td><img src="assets/simple-logo.png" alt="Before vectorization" width="250"></td>
+    <td><img src="assets/simple-logo.svg" alt="After vectorization" width="250"></td>
+  </tr>
+</table>
+
+#### Use Case 4: Chaining Multiple Operations
 
 You can combine actions. For example, let's take an image, remove its background, resize it to 256x256 pixels, and convert it to the JPG format.
 
