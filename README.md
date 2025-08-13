@@ -1,7 +1,7 @@
 # PixelHorizon
 
 <p align="center">
-  <img src="PixelHorizon.png" alt="PixelHorizon logo" width="200"/>
+  <img src="assets/PixelHorizon.png" alt="PixelHorizon logo" width="200"/>
 </p>
 
 <p align="center">
@@ -80,8 +80,8 @@ The result is a clean PNG with a transparent background.
     <td align="center"><strong>After</strong></td>
   </tr>
   <tr>
-    <td><img src="tests/logo.jpeg" alt="Before background removal" width="250"></td>
-    <td><img src="tests/logo.png" alt="After background removal" width="250"></td>
+    <td><img src="assets/logo.jpeg" alt="Before background removal" width="250"></td>
+    <td><img src="assets/logo.png" alt="After background removal" width="250"></td>
   </tr>
 </table>
 

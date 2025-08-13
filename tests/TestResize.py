@@ -12,7 +12,7 @@ from image_ops.utils import get_image_name
 class TestImageResize(unittest.TestCase):
     def setUp(self):
         """Set up test environment."""
-        self.input_image_path = os.path.join(os.path.dirname(__file__), 'logo.png')
+        self.input_image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'assets', 'logo.png'))
         self.output_dir = os.path.dirname(__file__)
         self.test_image_name = get_image_name(self.input_image_path)
         self.output_files = []

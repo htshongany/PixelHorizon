@@ -18,7 +18,7 @@ REMOVE_BG_API_KEY = os.getenv("REMOVE_BG_API_KEY")
 class TestRemoveBG(unittest.TestCase):
     def setUp(self):
         """Set up test environment."""
-        self.input_image_path = os.path.join(os.path.dirname(__file__), 'logo.jpeg')
+        self.input_image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'assets', 'logo.jpeg'))
         self.output_dir = os.path.dirname(__file__)
         self.test_image_name = get_image_name(self.input_image_path)
         self.output_files = []

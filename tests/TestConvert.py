@@ -11,7 +11,7 @@ from image_ops.utils import get_image_name
 class TestImageConversion(unittest.TestCase):
     def setUp(self):
         """Set up test environment."""
-        self.input_image_path = os.path.join(os.path.dirname(__file__), 'logo.png')
+        self.input_image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'assets', 'logo.png'))
         self.output_dir = os.path.dirname(__file__)
         self.test_image_name = get_image_name(self.input_image_path)
         self.output_files = []
@@ -51,7 +51,7 @@ class TestImageConversion(unittest.TestCase):
     def test_convert_format_no_output_path(self):
         """Test conversion when no output path is specified."""
         output_format = 'jpg'
-        expected_path = os.path.join(self.output_dir, f"{self.test_image_name}.{output_format}")
+        expected_path = os.path.join(os.path.dirname(self.input_image_path), f"{self.test_image_name}.{output_format}")
         self.output_files.append(expected_path)
 
         result_path = convert_format(self.input_image_path, output_format)
